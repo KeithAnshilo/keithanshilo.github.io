@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Keith Anshilo L. Diaz - Infrastructure Finance Specialist</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        
+        .hero-gradient {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        
+        .glass-card {
+            backdrop-filter: blur(20px);
+            background: rgba(255, 255, 255, 0.25);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+        }
+        
+        .skill-card {
+            transition: all 0.3s ease;
+            transform: translateY(0);
+        }
+        
+        .skill-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+        
+        .timeline-item {
+            position: relative;
+            padding-left: 2rem;
+        }
+        
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0.5rem;
+            width: 12px;
+            height: 12px;
+            background: #3b82f6;
+            border-radius: 50%;
+            border: 3px solid white;
+            box-shadow: 0 0 0 3px #3b82f6;
+        }
+        
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            left: 5px;
+            top: 1.5rem;
+            width: 2px;
+            height: calc(100% - 1rem);
+            background: linear-gradient(to bottom, #3b82f6, transparent);
+        }
+        
+        .timeline-item:last-child::after {
+            display: none;
+        }
+        
+        .metric-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+        
+        .section-padding {
+            padding: 5rem 0;
+        }
+        
+        .floating-animation {
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+        
+        .scroll-indicator {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: rgba(59, 130, 246, 0.2);
+            z-index: 1000;
+        }
+        
+        .scroll-progress {
+            height: 100%;
+            background: linear-gradient(90deg, #3b82f6, #8b5cf6);
+            width: 0%;
+            transition: width 0.1s ease;
+        }
+        
+        .nav-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .nav-dot.active {
+            background: white;
+            transform: scale(1.2);
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Scroll Progress Indicator -->
+    <div class="scroll-indicator">
+        <div class="scroll-progress" id="scrollProgress"></div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="fixed top-6 right-6 z-50 flex flex-col gap-3">
+        <div class="nav-dot active" data-section="hero"></div>
+        <div class="nav-dot" data-section="value"></div>
+        <div class="nav-dot" data-section="experience"></div>
+        <div class="nav-dot" data-section="skills"></div>
+        <div class="nav-dot" data-section="cases"></div>
+        <div class="nav-dot" data-section="vision"></div>
+        <div class="nav-dot" data-section="contact"></div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="hero" class="hero-gradient min-h-screen flex items-center justify-center relative overflow-hidden">
+        <div class="absolute inset-0 bg-black opacity-10"></div>
+        <div class="container mx-auto px-6 text-center relative z-10">
+            <div class="floating-animation">
+                <h1 class="text-6xl md:text-8xl font-black text-white mb-6 leading-tight">
+                    Keith Anshilo L. Diaz
+                </h1>
+                <p class="text-xl md:text-2xl text-white/90 mb-8 max-w-3xl mx-auto font-light">
+                    Infrastructure Finance Specialist • PPP Expert • Policy Strategist
+                </p>
+                <div class="text-lg md:text-xl text-white/80 mb-12">
+                    Driving transformative infrastructure projects across Southeast Asia
+                </div>
+            </div>
+            
+            <div class="flex flex-wrap justify-center gap-4 mb-12">
+                <div class="glass-card px-6 py-3 rounded-full">
+                    <span class="text-white font-semibold">₱170.6B NAIA PPP Project</span>
+                </div>
+                <div class="glass-card px-6 py-3 rounded-full">
+                    <span class="text-white font-semibold">$8M+ Funding Secured</span>
+                </div>
+                <div class="glass-card px-6 py-3 rounded-full">
+                    <span class="text-white font-semibold">5+ Years Experience</span>
+                </div>
+            </div>
+            
+            <button onclick="document.getElementById('value').scrollIntoView({behavior: 'smooth'})" 
+                    class="bg-white text-blue-600 px-8 py-4 rounded-full font-semibold text-lg hover:bg-blue-50 transition-all duration-300 hover:scale-105 shadow-lg">
+                Explore My Work
+            </button>
+        </div>
+    </section>
+
+    <!-- Value Proposition -->
+    <section id="value" class="section-padding bg-white">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-bold text-gray-800 mb-6">My Value Proposition</h2>
+                <div class="w-24 h-1 bg-blue-500 mx-auto mb-8"></div>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    I create sustainable value by delivering infrastructure that meets public needs while ensuring commercial success and investor confidence.
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="skill-card bg-white rounded-2xl p-8 shadow-lg border border-gray-100">
+                    <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mb-6">
+                        <svg class="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-800 mb-4">Financial Acumen</h3>
+                    <p class="text-gray-600 leading-relaxed">
+                        I build the bankable financial models and commercial assessments that turn ambitious concepts into funded, viable projects.
+                    </p>
+                </div>
+                
+                <div class="skill-card bg-white rounded-2xl p-8 shadow-lg border border-gray-100">
+                    <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mb-6">
+                        <svg class="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-800 mb-4">Policy Navigation</h3>
+                    <p class="text-gray-600 leading-relaxed">
+                        I bridge the gap between public sector goals and private sector investment, navigating complex regulatory landscapes.
+                    </p>
+                </div>
+                
+                <div class="skill-card bg-white rounded-2xl p-8 shadow-lg border border-gray-100">
+                    <div class="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mb-6">
+                        <svg class="w-8 h-8 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-800 mb-4">Full-Cycle Execution</h3>
+                    <p class="text-gray-600 leading-relaxed">
+                        I have hands-on experience across the entire PPP lifecycle, from project origination to transaction advisory and award.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Timeline -->
+    <section id="experience" class="section-padding bg-gray-100">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-bold text-gray-800 mb-6">PPP Lifecycle Experience</h2>
+                <div class="w-24 h-1 bg-blue-500 mx-auto mb-8"></div>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    My career spans critical phases of infrastructure development, with deep expertise in the early stages that determine project success.
+                </p>
+            </div>
+            
+            <div class="max-w-4xl mx-auto">
+                <div class="space-y-8">
+                    <div class="timeline-item bg-white rounded-lg p-6 shadow-lg">
+                        <div class="flex items-center justify-between mb-4">
+                            <h3 class="text-xl font-bold text-blue-600">Project Origination & Funding</h3>
+                            <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm font-semibold">Expert</span>
+                        </div>
+                        <p class="text-gray-600">Concept development, securing grants, and initial project structuring</p>
+                    </div>
+                    
+                    <div class="timeline-item bg-white rounded-lg p-6 shadow-lg">
+                        <div class="flex items-center justify-between mb-4">
+                            <h3 class="text-xl font-bold text-blue-600">Feasibility & Structuring</h3>
+                            <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm font-semibold">Expert</span>
+                        </div>
+                        <p class="text-gray-600">Financial modeling, risk analysis, and commercial viability assessment</p>
+                    </div>
+                    
+                    <div class="timeline-item bg-white rounded-lg p-6 shadow-lg">
+                        <div class="flex items-center justify-between mb-4">
+                            <h3 class="text-xl font-bold text-blue-600">Transaction Advisory</h3>
+                            <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm font-semibold">Expert</span>
+                        </div>
+                        <p class="text-gray-600">Tender documentation, government approvals, and stakeholder management</p>
+                    </div>
+                    
+                    <div class="timeline-item bg-white rounded-lg p-6 shadow-lg">
+                        <div class="flex items-center justify-between mb-4">
+                            <h3 class="text-xl font-bold text-gray-600">Tender & Award</h3>
+                            <span class="bg-gray-100 text-gray-600 px-3 py-1 rounded-full text-sm font-semibold">Supported</span>
+                        </div>
+                        <p class="text-gray-600">Bid evaluation support and contract finalization</p>
+                    </div>
+                    
+                    <div class="timeline-item bg-white rounded-lg p-6 shadow-lg">
+                        <div class="flex items-center justify-between mb-4">
+                            <h3 class="text-xl font-bold text-gray-600">Operations & Maintenance</h3>
+                            <span class="bg-gray-100 text-gray-600 px-3 py-1 rounded-full text-sm font-semibold">Advisory</span>
+                        </div>
+                        <p class="text-gray-600">Ongoing advisory and performance monitoring</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Chart -->
+    <section id="skills" class="section-padding bg-white">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-bold text-gray-800 mb-6">Core Competencies</h2>
+                <div class="w-24 h-1 bg-blue-500 mx-auto mb-8"></div>
+            </div>
+            
+            <div class="max-w-4xl mx-auto">
+                <div class="bg-white rounded-2xl shadow-lg p-8">
+                    <div class="h-96">
+                        <canvas id="competencyChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Case Studies -->
+    <section id="cases" class="section-padding bg-gray-100">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-bold text-gray-800 mb-6">Key Achievements</h2>
+                <div class="w-24 h-1 bg-blue-500 mx-auto mb-8"></div>
+            </div>
+            
+            <!-- Metrics -->
+            <div class="grid md:grid-cols-3 gap-8 mb-16">
+                <div class="metric-card rounded-2xl p-8 text-center">
+                    <div class="text-4xl font-bold mb-2">₱170.6B</div>
+                    <div class="text-lg opacity-90">NAIA PPP Project Value</div>
+                </div>
+                <div class="metric-card rounded-2xl p-8 text-center">
+                    <div class="text-4xl font-bold mb-2">$8M+</div>
+                    <div class="text-lg opacity-90">Funding Secured</div>
+                </div>
+                <div class="metric-card rounded-2xl p-8 text-center">
+                    <div class="text-4xl font-bold mb-2">5+</div>
+                    <div class="text-lg opacity-90">Years Experience</div>
+                </div>
+            </div>
+            
+            <!-- Case Study Cards -->
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="bg-white rounded-2xl p-8 shadow-lg">
+                    <div class="bg-blue-100 text-blue-800 px-4 py-2 rounded-full text-sm font-semibold mb-6 inline-block">
+                        Transport Deal of the Year 2024
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-800 mb-4">NAIA PPP Project</h3>
+                    <p class="text-gray-600 mb-6">
+                        Led government-side advisory for the ₱170.6B NAIA privatization, one of the largest and most complex PPP transactions in Philippine history.
+                    </p>
+                    <ul class="space-y-2 text-gray-600">
+                        <li class="flex items-start">
+                            <span class="text-blue-500 mr-2">•</span>
+                            Project structuring and NEDA-ICC approval package preparation
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-blue-500 mr-2">•</span>
+                            Commercial viability assessments and financial modeling
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-blue-500 mr-2">•</span>
+                            Multi-stakeholder engagement coordination
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="bg-white rounded-2xl p-8 shadow-lg">
+                    <div class="bg-green-100 text-green-800 px-4 py-2 rounded-full text-sm font-semibold mb-6 inline-block">
+                        Strategic Funding Success
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-800 mb-4">$8M+ Funding Secured</h3>
+                    <p class="text-gray-600 mb-6">
+                        Transformed unfunded national transport priorities into funded projects through strategic multilateral engagement.
+                    </p>
+                    <ul class="space-y-2 text-gray-600">
+                        <li class="flex items-start">
+                            <span class="text-green-500 mr-2">•</span>
+                            Comprehensive project concept note development
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-green-500 mr-2">•</span>
+                            PPP suitability analysis for four priority projects
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-green-500 mr-2">•</span>
+                            Direct engagement with ADB and AIIB partners
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Vision -->
+    <section id="vision" class="section-padding bg-white">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-bold text-gray-800 mb-6">Future Vision</h2>
+                <div class="w-24 h-1 bg-blue-500 mx-auto mb-8"></div>
+            </div>
+            
+            <div class="max-w-4xl mx-auto">
+                <div class="bg-gray-50 rounded-2xl p-8 mb-12">
+                    <h3 class="text-2xl font-bold text-gray-800 mb-6 text-center">Research Focus Areas</h3>
+                    <div class="grid md:grid-cols-2 gap-8">
+                        <div class="space-y-4">
+                            <div class="flex items-start">
+                                <div class="w-3 h-3 bg-blue-500 rounded-full mt-2 mr-4 flex-shrink-0"></div>
+                                <div>
+                                    <h4 class="font-semibold text-gray-800">Climate-Resilient Infrastructure</h4>
+                                    <p class="text-gray-600 text-sm">Advancing rail, BRT, and EV infrastructure with focus on carbon reduction and extreme weather resilience</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <div class="w-3 h-3 bg-green-500 rounded-full mt-2 mr-4 flex-shrink-0"></div>
+                                <div>
+                                    <h4 class="font-semibold text-gray-800">Inclusive Transit Systems</h4>
+                                    <p class="text-gray-600 text-sm">Designing equitable multi-modal networks and affordable PPP structures for underserved communities</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="space-y-4">
+                            <div class="flex items-start">
+                                <div class="w-3 h-3 bg-purple-500 rounded-full mt-2 mr-4 flex-shrink-0"></div>
+                                <div>
+                                    <h4 class="font-semibold text-gray-800">Digital Integration</h4>
+                                    <p class="text-gray-600 text-sm">Smart mobility solutions with automated fare collection, real-time data, and AI-driven efficiencies</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <div class="w-3 h-3 bg-orange-500 rounded-full mt-2 mr-4 flex-shrink-0"></div>
+                                <div>
+                                    <h4 class="font-semibold text-gray-800">Innovative Financing</h4>
+                                    <p class="text-gray-600 text-sm">Pioneering blended finance models, green bonds, and outcome-based contracts</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="text-center">
+                    <blockquote class="text-xl italic text-gray-600 mb-8">
+                        "My goal is to create sustainable infrastructure solutions that address Southeast Asia's urgent mobility challenges while ensuring commercial viability and environmental responsibility."
+                    </blockquote>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" class="section-padding hero-gradient">
+        <div class="container mx-auto px-6 text-center">
+            <h2 class="text-4xl md:text-5xl font-bold text-white mb-8">Let's Connect</h2>
+            <p class="text-xl text-white/90 mb-12 max-w-2xl mx-auto">
+                Ready to discuss how I can contribute to your infrastructure projects and organizational goals.
+            </p>
+            
+            <div class="flex flex-col md:flex-row items-center justify-center gap-8 mb-12">
+                <div class="glass-card px-8 py-6 rounded-2xl">
+                    <div class="text-white font-semibold">Email</div>
+                    <div class="text-white/80">keithdiaz0611@gmail.com</div>
+                </div>
+                <div class="glass-card px-8 py-6 rounded-2xl">
+                    <div class="text-white font-semibold">Phone</div>
+                    <div class="text-white/80">+63 995 789 6288</div>
+                </div>
+                <div class="glass-card px-8 py-6 rounded-2xl">
+                    <div class="text-white font-semibold">Location</div>
+                    <div class="text-white/80">Rodriguez, Rizal, Philippines</div>
+                </div>
+            </div>
+            
+            <div class="text-center">
+                <p class="text-white/80 text-lg">
+                    Open to opportunities in infrastructure finance, PPP advisory, and policy development
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Scroll Progress
+        window.addEventListener('scroll', () => {
+            const scrolled = (window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100;
+            document.getElementById('scrollProgress').style.width = scrolled + '%';
+        });
+
+        // Navigation Dots
+        const navDots = document.querySelectorAll('.nav-dot');
+        const sections = document.querySelectorAll('section');
+
+        navDots.forEach(dot => {
+            dot.addEventListener('click', () => {
+                const targetSection = document.getElementById(dot.dataset.section);
+                targetSection.scrollIntoView({behavior: 'smooth'});
+            });
+        });
+
+        // Update active nav dot on scroll
+        window.addEventListener('scroll', () => {
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (scrollY >= (sectionTop - sectionHeight / 3)) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navDots.forEach(dot => {
+                dot.classList.remove('active');
+                if (dot.dataset.section === current) {
+                    dot.classList.add('active');
+                }
+            });
+        });
+
+        // Competency Chart
+        function renderCompetencyChart() {
+            const ctx = document.getElementById('competencyChart').getContext('2d');
+            new Chart(ctx, {
+                type: 'radar',
+                data: {
+                    labels: [
+                        'Financial Modeling',
+                        'PPP Structuring',
+                        'Policy Analysis',
+                        'Risk Mitigation',
+                        'Stakeholder Management',
+                        'Transaction Advisory'
+                    ],
+                    datasets: [{
+                        label: 'Expertise Level',
+                        data: [9, 9, 8, 8, 9, 10],
+                        backgroundColor: 'rgba(59, 130, 246, 0.1)',
+                        borderColor: 'rgba(59, 130, 246, 1)',
+                        borderWidth: 3,
+                        pointBackgroundColor: 'rgba(59, 130, 246, 1)',
+                        pointBorderColor: '#fff',
+                        pointBorderWidth: 2,
+                        pointRadius: 6,
+                        pointHoverRadius: 8
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            display: false
+                        }
+                    },
+                    scales: {
+                        r: {
+                            beginAtZero: true,
+                            max: 10,
+                            ticks: {
+                                stepSize: 2,
+                                color: '#6b7280',
+                                backdropColor: 'rgba(255, 255, 255, 0.8)'
+                            },
+                            grid: {
+                                color: 'rgba(0, 0, 0, 0.1)'
+                            },
+                            pointLabels: {
+                                font: {
+                                    size: 14,
+                                    weight: '600'
+                                },
+                                color: '#374151'
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+        // Initialize chart when page loads
+        document.addEventListener('DOMContentLoaded', renderCompetencyChart);
+    </script>
+</body>
+</html>
