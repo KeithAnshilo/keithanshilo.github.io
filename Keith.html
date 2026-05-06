@@ -1,563 +1,1282 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Keith Anshilo L. Diaz - Infrastructure Finance Specialist</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <style>
-        body {
-            font-family: 'Inter', sans-serif;
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
-        }
-        
-        .hero-gradient {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        }
-        
-        .glass-card {
-            backdrop-filter: blur(20px);
-            background: rgba(255, 255, 255, 0.25);
-            border: 1px solid rgba(255, 255, 255, 0.18);
-            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
-        }
-        
-        .skill-card {
-            transition: all 0.3s ease;
-            transform: translateY(0);
-        }
-        
-        .skill-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-        }
-        
-        .timeline-item {
-            position: relative;
-            padding-left: 2rem;
-        }
-        
-        .timeline-item::before {
-            content: '';
-            position: absolute;
-            left: 0;
-            top: 0.5rem;
-            width: 12px;
-            height: 12px;
-            background: #3b82f6;
-            border-radius: 50%;
-            border: 3px solid white;
-            box-shadow: 0 0 0 3px #3b82f6;
-        }
-        
-        .timeline-item::after {
-            content: '';
-            position: absolute;
-            left: 5px;
-            top: 1.5rem;
-            width: 2px;
-            height: calc(100% - 1rem);
-            background: linear-gradient(to bottom, #3b82f6, transparent);
-        }
-        
-        .timeline-item:last-child::after {
-            display: none;
-        }
-        
-        .metric-card {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-        }
-        
-        .section-padding {
-            padding: 5rem 0;
-        }
-        
-        .floating-animation {
-            animation: float 6s ease-in-out infinite;
-        }
-        
-        @keyframes float {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-20px); }
-        }
-        
-        .scroll-indicator {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 4px;
-            background: rgba(59, 130, 246, 0.2);
-            z-index: 1000;
-        }
-        
-        .scroll-progress {
-            height: 100%;
-            background: linear-gradient(90deg, #3b82f6, #8b5cf6);
-            width: 0%;
-            transition: width 0.1s ease;
-        }
-        
-        .nav-dot {
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.3);
-            transition: all 0.3s ease;
-            cursor: pointer;
-        }
-        
-        .nav-dot.active {
-            background: white;
-            transform: scale(1.2);
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Keith Anshilo L. Diaz — Infrastructure Consultant</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet" />
+  <style>
+    /* ─── CSS VARIABLES ─────────────────────────── */
+    :root {
+      --navy:      #0B1629;
+      --navy-mid:  #132038;
+      --navy-light:#1C2F50;
+      --gold:      #C9A257;
+      --gold-light:#E8C97A;
+      --cream:     #F4EFE4;
+      --white:     #FDFCFA;
+      --slate:     #7A8FA8;
+      --slate-light:#B0BFCC;
+      --text-body: #D8DEEA;
+      --border:    rgba(201,162,87,0.2);
+    }
+
+    /* ─── RESET & BASE ──────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--navy);
+      color: var(--text-body);
+      overflow-x: hidden;
+      cursor: default;
+    }
+    ::selection { background: var(--gold); color: var(--navy); }
+
+    /* ─── SCROLLBAR ─────────────────────────────── */
+    ::-webkit-scrollbar { width: 4px; }
+    ::-webkit-scrollbar-track { background: var(--navy); }
+    ::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 2px; }
+
+    /* ─── TYPOGRAPHY ────────────────────────────── */
+    h1, h2, h3, h4 { font-family: 'Cormorant Garamond', serif; font-weight: 300; }
+    h1 { font-size: clamp(3rem, 7vw, 6.5rem); line-height: 0.95; letter-spacing: -0.02em; color: var(--white); }
+    h2 { font-size: clamp(2rem, 4vw, 3.5rem); line-height: 1.1; color: var(--white); }
+    h3 { font-size: clamp(1.2rem, 2vw, 1.6rem); color: var(--white); font-weight: 400; }
+    p  { font-size: 0.95rem; line-height: 1.75; font-weight: 300; }
+
+    .label {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.68rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      font-weight: 400;
+    }
+    .gold { color: var(--gold); }
+    .italic { font-style: italic; }
+
+    /* ─── NOISE OVERLAY ─────────────────────────── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 9999;
+      opacity: 0.4;
+    }
+
+    /* ─── NAV ───────────────────────────────────── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.5rem 4rem;
+      transition: background 0.4s, backdrop-filter 0.4s;
+    }
+    nav.scrolled {
+      background: rgba(11,22,41,0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--white);
+      letter-spacing: 0.05em;
+      text-decoration: none;
+    }
+    .nav-logo span { color: var(--gold); }
+    .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+    .nav-links a {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--slate-light);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--gold); }
+    .nav-cta {
+      background: transparent;
+      border: 1px solid var(--gold);
+      color: var(--gold);
+      font-family: 'DM Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      padding: 0.6rem 1.4rem;
+      cursor: pointer;
+      transition: all 0.2s;
+      text-decoration: none;
+    }
+    .nav-cta:hover { background: var(--gold); color: var(--navy); }
+
+    /* ─── HERO ──────────────────────────────────── */
+    #hero {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-left {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 8rem 4rem 6rem;
+      position: relative;
+      z-index: 2;
+    }
+    .hero-eyebrow {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 2rem;
+      opacity: 0;
+      animation: fadeUp 0.8s ease forwards 0.2s;
+    }
+    .hero-eyebrow::before {
+      content: '';
+      display: block;
+      width: 40px;
+      height: 1px;
+      background: var(--gold);
+    }
+    h1 {
+      opacity: 0;
+      animation: fadeUp 0.8s ease forwards 0.4s;
+      margin-bottom: 1.5rem;
+    }
+    .hero-tagline {
+      font-size: 1.05rem;
+      font-weight: 300;
+      color: var(--slate-light);
+      max-width: 480px;
+      line-height: 1.7;
+      opacity: 0;
+      animation: fadeUp 0.8s ease forwards 0.6s;
+      margin-bottom: 3rem;
+    }
+    .hero-actions {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      opacity: 0;
+      animation: fadeUp 0.8s ease forwards 0.8s;
+    }
+    .btn-primary {
+      background: var(--gold);
+      color: var(--navy);
+      font-family: 'DM Mono', monospace;
+      font-size: 0.7rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      padding: 1rem 2rem;
+      border: none;
+      cursor: pointer;
+      font-weight: 500;
+      text-decoration: none;
+      transition: background 0.2s, transform 0.2s;
+      display: inline-block;
+    }
+    .btn-primary:hover { background: var(--gold-light); transform: translateY(-2px); }
+    .btn-secondary {
+      background: transparent;
+      color: var(--white);
+      font-family: 'DM Mono', monospace;
+      font-size: 0.7rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      padding: 1rem 2rem;
+      border: 1px solid rgba(255,255,255,0.2);
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.2s;
+      display: inline-block;
+    }
+    .btn-secondary:hover { border-color: var(--gold); color: var(--gold); }
+
+    .hero-right {
+      position: relative;
+      overflow: hidden;
+    }
+    /* ── PHOTO PLACEHOLDER ── */
+    .hero-photo-placeholder {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, var(--navy-mid) 0%, var(--navy-light) 100%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+      border-left: 1px solid var(--border);
+    }
+    .photo-icon {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      border: 2px dashed var(--gold);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0.5;
+    }
+    .photo-icon svg { width: 40px; height: 40px; fill: var(--gold); }
+    .hero-photo-placeholder p {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.15em;
+      color: var(--slate);
+      text-transform: uppercase;
+    }
+    /* Gold diagonal accent */
+    .hero-right::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0;
+      width: 100%; height: 200px;
+      background: linear-gradient(to top, var(--navy) 0%, transparent 100%);
+      pointer-events: none;
+    }
+
+    /* Hero stats bar */
+    .hero-stats {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      background: rgba(11,22,41,0.9);
+      border-top: 1px solid var(--border);
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      z-index: 10;
+      opacity: 0;
+      animation: fadeUp 0.8s ease forwards 1s;
+    }
+    .stat-item {
+      padding: 1.5rem 2rem;
+      border-right: 1px solid var(--border);
+    }
+    .stat-item:last-child { border-right: none; }
+    .stat-number {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.2rem;
+      font-weight: 300;
+      color: var(--gold);
+      line-height: 1;
+      display: block;
+    }
+    .stat-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.6rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--slate);
+      margin-top: 0.3rem;
+      display: block;
+    }
+
+    /* ─── SECTION BASE ──────────────────────────── */
+    section { padding: 7rem 4rem; }
+    .section-header {
+      display: flex;
+      align-items: flex-start;
+      gap: 3rem;
+      margin-bottom: 4rem;
+    }
+    .section-number {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      color: var(--gold);
+      opacity: 0.6;
+      padding-top: 0.8rem;
+      white-space: nowrap;
+    }
+    .divider {
+      width: 100%;
+      height: 1px;
+      background: var(--border);
+      margin: 5rem 0;
+    }
+
+    /* ─── ABOUT ─────────────────────────────────── */
+    #about { background: var(--navy); }
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.4fr;
+      gap: 6rem;
+      align-items: start;
+    }
+    .about-image-placeholder {
+      aspect-ratio: 3/4;
+      background: var(--navy-light);
+      border: 1px dashed rgba(201,162,87,0.3);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .about-image-placeholder::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(201,162,87,0.05) 0%, transparent 60%);
+    }
+    .about-image-placeholder .placeholder-text {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.62rem;
+      letter-spacing: 0.15em;
+      color: var(--slate);
+      text-transform: uppercase;
+      z-index: 1;
+    }
+    .about-image-placeholder svg { width: 48px; height: 48px; fill: var(--gold); opacity: 0.3; z-index: 1; }
+    .about-content { padding-top: 1rem; }
+    .about-content p { color: var(--slate-light); margin-bottom: 1.5rem; }
+    .about-content p:last-child { margin-bottom: 0; }
+    .about-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-top: 2.5rem;
+    }
+    .tag {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.62rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.4rem 0.9rem;
+      border: 1px solid var(--border);
+      color: var(--gold);
+    }
+    .about-highlight {
+      border-left: 2px solid var(--gold);
+      padding-left: 1.5rem;
+      margin: 2rem 0;
+    }
+    .about-highlight p { font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; font-style: italic; color: var(--cream); line-height: 1.5; }
+
+    /* ─── EXPERTISE ─────────────────────────────── */
+    #expertise { background: var(--navy-mid); }
+    .expertise-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+    }
+    .expertise-card {
+      background: var(--navy-mid);
+      padding: 2.5rem;
+      transition: background 0.3s;
+      position: relative;
+      overflow: hidden;
+    }
+    .expertise-card:hover { background: var(--navy-light); }
+    .expertise-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
+      width: 3px; height: 0;
+      background: var(--gold);
+      transition: height 0.3s;
+    }
+    .expertise-card:hover::before { height: 100%; }
+    .expertise-icon {
+      font-size: 1.8rem;
+      margin-bottom: 1.2rem;
+      display: block;
+    }
+    .expertise-card h3 { font-size: 1.15rem; margin-bottom: 0.8rem; font-weight: 600; }
+    .expertise-card p { font-size: 0.85rem; color: var(--slate-light); line-height: 1.7; }
+    .expertise-skills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin-top: 1.5rem;
+    }
+    .skill-chip {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.58rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 0.25rem 0.6rem;
+      background: rgba(201,162,87,0.1);
+      color: var(--gold);
+      border: 1px solid rgba(201,162,87,0.2);
+    }
+
+    /* ─── PROJECTS ──────────────────────────────── */
+    #projects { background: var(--navy); }
+    .projects-intro {
+      max-width: 640px;
+      color: var(--slate-light);
+      margin-bottom: 3.5rem;
+    }
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5rem;
+    }
+    .project-card {
+      background: var(--navy-mid);
+      border: 1px solid var(--border);
+      overflow: hidden;
+      transition: transform 0.3s, border-color 0.3s;
+      position: relative;
+    }
+    .project-card:hover { transform: translateY(-4px); border-color: var(--gold); }
+    .project-card.featured {
+      grid-column: span 2;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+    }
+    /* Project image placeholders */
+    .project-image {
+      aspect-ratio: 16/9;
+      background: linear-gradient(135deg, var(--navy-light) 0%, #0d1e38 100%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0.75rem;
+      border-bottom: 1px solid var(--border);
+      position: relative;
+      overflow: hidden;
+    }
+    .project-card.featured .project-image {
+      aspect-ratio: auto;
+      border-bottom: none;
+      border-right: 1px solid var(--border);
+    }
+    .project-image svg { width: 36px; height: 36px; fill: var(--gold); opacity: 0.3; }
+    .project-image .placeholder-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.6rem;
+      letter-spacing: 0.15em;
+      color: var(--slate);
+      text-transform: uppercase;
+    }
+    .project-image .award-badge {
+      position: absolute;
+      top: 1rem; right: 1rem;
+      background: var(--gold);
+      color: var(--navy);
+      font-family: 'DM Mono', monospace;
+      font-size: 0.58rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.3rem 0.7rem;
+      font-weight: 500;
+    }
+    .project-body { padding: 2rem; }
+    .project-card.featured .project-body { display: flex; flex-direction: column; justify-content: center; padding: 3rem; }
+    .project-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1rem;
+    }
+    .project-category { font-family: 'DM Mono', monospace; font-size: 0.62rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold); }
+    .project-year { font-family: 'DM Mono', monospace; font-size: 0.62rem; color: var(--slate); }
+    .project-body h3 { font-size: 1.2rem; margin-bottom: 0.8rem; }
+    .project-card.featured .project-body h3 { font-size: 1.6rem; }
+    .project-body p { font-size: 0.85rem; color: var(--slate-light); line-height: 1.7; }
+    .project-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 1.2rem; }
+
+    /* ─── EXPERIENCE TIMELINE ───────────────────── */
+    #experience { background: var(--navy-mid); }
+    .timeline { position: relative; padding-left: 2rem; }
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 0; top: 0; bottom: 0;
+      width: 1px;
+      background: linear-gradient(to bottom, var(--gold), transparent);
+    }
+    .timeline-item {
+      position: relative;
+      padding: 0 0 3.5rem 3rem;
+      opacity: 0;
+      transform: translateX(-20px);
+      transition: all 0.6s ease;
+    }
+    .timeline-item.visible { opacity: 1; transform: translateX(0); }
+    .timeline-dot {
+      position: absolute;
+      left: -6px; top: 6px;
+      width: 13px; height: 13px;
+      border-radius: 50%;
+      border: 2px solid var(--gold);
+      background: var(--navy-mid);
+    }
+    .timeline-item.current .timeline-dot {
+      background: var(--gold);
+      box-shadow: 0 0 12px var(--gold);
+    }
+    .timeline-date {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.15em;
+      color: var(--gold);
+      margin-bottom: 0.5rem;
+      display: block;
+    }
+    .timeline-org {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.7rem;
+      letter-spacing: 0.1em;
+      color: var(--slate);
+      margin-bottom: 0.3rem;
+    }
+    .timeline-item h3 { font-size: 1.3rem; margin-bottom: 0.8rem; }
+    .timeline-item p { font-size: 0.88rem; color: var(--slate-light); max-width: 700px; }
+    .timeline-achievements { list-style: none; margin-top: 0.8rem; }
+    .timeline-achievements li {
+      font-size: 0.85rem;
+      color: var(--slate-light);
+      padding: 0.3rem 0;
+      padding-left: 1.2rem;
+      position: relative;
+    }
+    .timeline-achievements li::before {
+      content: '—';
+      position: absolute;
+      left: 0;
+      color: var(--gold);
+      font-size: 0.7rem;
+    }
+
+    /* ─── CERTIFICATIONS ────────────────────────── */
+    #certifications { background: var(--navy); }
+    .certs-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1rem;
+    }
+    .cert-card {
+      border: 1px solid var(--border);
+      padding: 1.5rem;
+      transition: border-color 0.2s, background 0.2s;
+    }
+    .cert-card:hover { border-color: var(--gold); background: rgba(201,162,87,0.04); }
+    .cert-year { font-family: 'DM Mono', monospace; font-size: 0.65rem; color: var(--gold); letter-spacing: 0.1em; margin-bottom: 0.6rem; display: block; }
+    .cert-card h4 { font-family: 'DM Sans', sans-serif; font-size: 0.82rem; font-weight: 500; color: var(--white); margin-bottom: 0.4rem; line-height: 1.4; }
+    .cert-card p { font-size: 0.75rem; color: var(--slate); }
+
+    /* ─── CONTACT ───────────────────────────────── */
+    #contact {
+      background: var(--navy-mid);
+      text-align: center;
+      padding: 8rem 4rem;
+      position: relative;
+      overflow: hidden;
+    }
+    #contact::before {
+      content: 'CONNECT';
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 18vw;
+      font-weight: 300;
+      color: rgba(255,255,255,0.025);
+      white-space: nowrap;
+      pointer-events: none;
+      letter-spacing: 0.1em;
+    }
+    .contact-inner { position: relative; z-index: 2; }
+    .contact-inner .label { margin-bottom: 1.5rem; display: block; }
+    #contact h2 { margin-bottom: 1.5rem; }
+    .contact-sub { font-size: 1rem; color: var(--slate-light); max-width: 560px; margin: 0 auto 3rem; }
+    .contact-channels {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+      margin-bottom: 3rem;
+    }
+    .contact-channel {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 1rem 1.8rem;
+      border: 1px solid var(--border);
+      text-decoration: none;
+      transition: all 0.2s;
+    }
+    .contact-channel:hover { border-color: var(--gold); background: rgba(201,162,87,0.05); }
+    .contact-channel .ch-label { font-family: 'DM Mono', monospace; font-size: 0.62rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--slate); display: block; }
+    .contact-channel .ch-value { font-size: 0.85rem; color: var(--white); display: block; margin-top: 0.2rem; }
+    .contact-actions { display: flex; justify-content: center; gap: 1rem; }
+
+    /* ─── FOOTER ────────────────────────────────── */
+    footer {
+      background: var(--navy);
+      border-top: 1px solid var(--border);
+      padding: 2rem 4rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    footer p { font-family: 'DM Mono', monospace; font-size: 0.62rem; letter-spacing: 0.1em; color: var(--slate); }
+    .footer-links { display: flex; gap: 2rem; }
+    .footer-links a { font-family: 'DM Mono', monospace; font-size: 0.62rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--slate); text-decoration: none; transition: color 0.2s; }
+    .footer-links a:hover { color: var(--gold); }
+
+    /* ─── ANIMATIONS ────────────────────────────── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .fade-in {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ─── AFFILIATIONS ──────────────────────────── */
+    .affiliations-bar {
+      background: var(--navy);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      padding: 1.8rem 4rem;
+      display: flex;
+      align-items: center;
+      gap: 3rem;
+      overflow: hidden;
+    }
+    .affiliations-label { font-family: 'DM Mono', monospace; font-size: 0.62rem; letter-spacing: 0.15em; color: var(--slate); white-space: nowrap; }
+    .affiliations-list { display: flex; gap: 3rem; align-items: center; flex-wrap: wrap; }
+    .affiliation-item { font-family: 'DM Sans', sans-serif; font-size: 0.82rem; font-weight: 500; color: var(--slate-light); letter-spacing: 0.05em; white-space: nowrap; }
+
+    /* ─── MOBILE ────────────────────────────────── */
+    @media (max-width: 900px) {
+      nav { padding: 1.2rem 2rem; }
+      .nav-links { display: none; }
+      section { padding: 5rem 2rem; }
+      #hero { grid-template-columns: 1fr; }
+      .hero-left { padding: 7rem 2rem 5rem; }
+      .hero-right { display: none; }
+      .hero-stats { grid-template-columns: repeat(2, 1fr); position: relative; }
+      .about-grid { grid-template-columns: 1fr; }
+      .about-image-placeholder { aspect-ratio: 16/9; max-height: 280px; }
+      .expertise-grid { grid-template-columns: 1fr; }
+      .projects-grid { grid-template-columns: 1fr; }
+      .project-card.featured { grid-column: span 1; grid-template-columns: 1fr; }
+      .project-card.featured .project-image { border-right: none; border-bottom: 1px solid var(--border); }
+      .certs-grid { grid-template-columns: repeat(2, 1fr); }
+      footer { flex-direction: column; gap: 1rem; text-align: center; }
+      .contact-channels { flex-direction: column; align-items: center; }
+      #contact::before { font-size: 30vw; }
+    }
+  </style>
 </head>
-<body class="bg-gray-50">
-    <!-- Scroll Progress Indicator -->
-    <div class="scroll-indicator">
-        <div class="scroll-progress" id="scrollProgress"></div>
+<body>
+
+  <!-- ═══ NAVIGATION ═══ -->
+  <nav id="navbar">
+    <a class="nav-logo" href="#hero">KEITH <span>.</span> DIAZ</a>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#expertise">Expertise</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#certifications">Credentials</a></li>
+    </ul>
+    <a href="#contact" class="nav-cta">Let's Connect</a>
+  </nav>
+
+  <!-- ═══ HERO ═══ -->
+  <section id="hero">
+    <div class="hero-left">
+      <div class="hero-eyebrow">
+        <span class="label">Infrastructure Consultant</span>
+      </div>
+      <h1>Keith<br /><em class="gold italic">Anshilo</em><br />Diaz</h1>
+      <p class="hero-tagline">
+        Shaping the future of transport infrastructure across Southeast Asia — through rigorous PPP structuring, evidence-based policy, and strategic partnerships with multilateral institutions.
+      </p>
+      <div class="hero-actions">
+        <a href="#contact" class="btn-primary">Work With Me</a>
+        <a href="#projects" class="btn-secondary">View Projects</a>
+      </div>
     </div>
 
-    <!-- Navigation -->
-    <nav class="fixed top-6 right-6 z-50 flex flex-col gap-3">
-        <div class="nav-dot active" data-section="hero"></div>
-        <div class="nav-dot" data-section="value"></div>
-        <div class="nav-dot" data-section="experience"></div>
-        <div class="nav-dot" data-section="skills"></div>
-        <div class="nav-dot" data-section="cases"></div>
-        <div class="nav-dot" data-section="vision"></div>
-        <div class="nav-dot" data-section="contact"></div>
-    </nav>
-
-    <!-- Hero Section -->
-    <section id="hero" class="hero-gradient min-h-screen flex items-center justify-center relative overflow-hidden">
-        <div class="absolute inset-0 bg-black opacity-10"></div>
-        <div class="container mx-auto px-6 text-center relative z-10">
-            <div class="floating-animation">
-                <h1 class="text-6xl md:text-8xl font-black text-white mb-6 leading-tight">
-                    Keith Anshilo L. Diaz
-                </h1>
-                <p class="text-xl md:text-2xl text-white/90 mb-8 max-w-3xl mx-auto font-light">
-                    Infrastructure Finance Specialist • PPP Expert • Policy Strategist
-                </p>
-                <div class="text-lg md:text-xl text-white/80 mb-12">
-                    Driving transformative infrastructure projects across Southeast Asia
-                </div>
-            </div>
-            
-            <div class="flex flex-wrap justify-center gap-4 mb-12">
-                <div class="glass-card px-6 py-3 rounded-full">
-                    <span class="text-white font-semibold">₱170.6B NAIA PPP Project</span>
-                </div>
-                <div class="glass-card px-6 py-3 rounded-full">
-                    <span class="text-white font-semibold">$8M+ Funding Secured</span>
-                </div>
-                <div class="glass-card px-6 py-3 rounded-full">
-                    <span class="text-white font-semibold">5+ Years Experience</span>
-                </div>
-            </div>
-            
-            <button onclick="document.getElementById('value').scrollIntoView({behavior: 'smooth'})" 
-                    class="bg-white text-blue-600 px-8 py-4 rounded-full font-semibold text-lg hover:bg-blue-50 transition-all duration-300 hover:scale-105 shadow-lg">
-                Explore My Work
-            </button>
+    <div class="hero-right">
+      <!-- ✏️ TEMPLATE: Replace this placeholder with your professional photo -->
+      <div class="hero-photo-placeholder">
+        <div class="photo-icon">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z"/>
+          </svg>
         </div>
-    </section>
+        <p>[ Your Professional Photo ]</p>
+        <p style="font-family:'DM Mono',monospace;font-size:0.55rem;color:var(--slate);letter-spacing:0.1em;">Replace with a high-res portrait</p>
+      </div>
+    </div>
 
-    <!-- Value Proposition -->
-    <section id="value" class="section-padding bg-white">
-        <div class="container mx-auto px-6">
-            <div class="text-center mb-16">
-                <h2 class="text-4xl md:text-5xl font-bold text-gray-800 mb-6">My Value Proposition</h2>
-                <div class="w-24 h-1 bg-blue-500 mx-auto mb-8"></div>
-                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
-                    I create sustainable value by delivering infrastructure that meets public needs while ensuring commercial success and investor confidence.
-                </p>
-            </div>
-            
-            <div class="grid md:grid-cols-3 gap-8">
-                <div class="skill-card bg-white rounded-2xl p-8 shadow-lg border border-gray-100">
-                    <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mb-6">
-                        <svg class="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
-                        </svg>
-                    </div>
-                    <h3 class="text-2xl font-bold text-gray-800 mb-4">Financial Acumen</h3>
-                    <p class="text-gray-600 leading-relaxed">
-                        I build the bankable financial models and commercial assessments that turn ambitious concepts into funded, viable projects.
-                    </p>
-                </div>
-                
-                <div class="skill-card bg-white rounded-2xl p-8 shadow-lg border border-gray-100">
-                    <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mb-6">
-                        <svg class="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                        </svg>
-                    </div>
-                    <h3 class="text-2xl font-bold text-gray-800 mb-4">Policy Navigation</h3>
-                    <p class="text-gray-600 leading-relaxed">
-                        I bridge the gap between public sector goals and private sector investment, navigating complex regulatory landscapes.
-                    </p>
-                </div>
-                
-                <div class="skill-card bg-white rounded-2xl p-8 shadow-lg border border-gray-100">
-                    <div class="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mb-6">
-                        <svg class="w-8 h-8 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
-                        </svg>
-                    </div>
-                    <h3 class="text-2xl font-bold text-gray-800 mb-4">Full-Cycle Execution</h3>
-                    <p class="text-gray-600 leading-relaxed">
-                        I have hands-on experience across the entire PPP lifecycle, from project origination to transaction advisory and award.
-                    </p>
-                </div>
-            </div>
+    <!-- Stats Bar -->
+    <div class="hero-stats">
+      <div class="stat-item">
+        <span class="stat-number">5+</span>
+        <span class="stat-label">Years in Infrastructure</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-number">$8M+</span>
+        <span class="stat-label">Advisory Funding Secured</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-number">10+</span>
+        <span class="stat-label">Major PPP Transactions</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-number">ADB</span>
+        <span class="stat-label">Current Engagement</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ AFFILIATIONS BAR ═══ -->
+  <div class="affiliations-bar">
+    <span class="affiliations-label">Affiliated with</span>
+    <div class="affiliations-list">
+      <span class="affiliation-item">Asian Development Bank</span>
+      <span class="affiliation-item">Dept. of Transportation — PH</span>
+      <span class="affiliation-item">Partnerships for Infrastructure (P4I)</span>
+      <span class="affiliation-item">UC Berkeley ITS</span>
+      <span class="affiliation-item">PICE · TSSP</span>
+    </div>
+  </div>
+
+  <!-- ═══ ABOUT ═══ -->
+  <section id="about">
+    <div class="section-header fade-in">
+      <span class="section-number">01 /</span>
+      <div>
+        <span class="label" style="margin-bottom:0.8rem;display:block;">About Me</span>
+        <h2>Infrastructure <em class="italic gold">Strategist</em><br />& PPP Specialist</h2>
+      </div>
+    </div>
+
+    <div class="about-grid">
+      <!-- ✏️ TEMPLATE: Replace with your professional photo or project photo -->
+      <div class="about-image-placeholder fade-in">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path d="M19 3H5c-1.1 0-2 .9-2 2v14l4-4h12c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 3c1.1 0 2 .9 2 2s-.9 2-2 2-2-.9-2-2 .9-2 2-2zm4 8H8v-.57c0-1.1.9-1.43 2-1.43h4c1.1 0 2 .33 2 1.43V14z"/>
+        </svg>
+        <p class="placeholder-text">[ Your Photo or Project Image ]</p>
+        <p style="font-family:'DM Mono',monospace;font-size:0.55rem;color:var(--slate);letter-spacing:0.08em;margin-top:0.3rem;">Recommended: 3:4 portrait or project photo</p>
+      </div>
+
+      <div class="about-content fade-in">
+        <span class="label" style="margin-bottom:1.5rem;display:block;">Background</span>
+        <p>
+          I am a Civil Engineer by training and an infrastructure strategist by practice. With a Master of Science in Transportation Engineering from Mapua University and research experience at UC Berkeley's Institute for Transportation Studies, I bridge rigorous technical analysis with strategic commercial thinking.
+        </p>
+
+        <div class="about-highlight">
+          <p>"I work at the intersection of policy, finance, and engineering — where the decisions that shape a nation's mobility are made."</p>
         </div>
-    </section>
 
-    <!-- Experience Timeline -->
-    <section id="experience" class="section-padding bg-gray-100">
-        <div class="container mx-auto px-6">
-            <div class="text-center mb-16">
-                <h2 class="text-4xl md:text-5xl font-bold text-gray-800 mb-6">PPP Lifecycle Experience</h2>
-                <div class="w-24 h-1 bg-blue-500 mx-auto mb-8"></div>
-                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
-                    My career spans critical phases of infrastructure development, with deep expertise in the early stages that determine project success.
-                </p>
-            </div>
-            
-            <div class="max-w-4xl mx-auto">
-                <div class="space-y-8">
-                    <div class="timeline-item bg-white rounded-lg p-6 shadow-lg">
-                        <div class="flex items-center justify-between mb-4">
-                            <h3 class="text-xl font-bold text-blue-600">Project Origination & Funding</h3>
-                            <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm font-semibold">Expert</span>
-                        </div>
-                        <p class="text-gray-600">Concept development, securing grants, and initial project structuring</p>
-                    </div>
-                    
-                    <div class="timeline-item bg-white rounded-lg p-6 shadow-lg">
-                        <div class="flex items-center justify-between mb-4">
-                            <h3 class="text-xl font-bold text-blue-600">Feasibility & Structuring</h3>
-                            <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm font-semibold">Expert</span>
-                        </div>
-                        <p class="text-gray-600">Financial modeling, risk analysis, and commercial viability assessment</p>
-                    </div>
-                    
-                    <div class="timeline-item bg-white rounded-lg p-6 shadow-lg">
-                        <div class="flex items-center justify-between mb-4">
-                            <h3 class="text-xl font-bold text-blue-600">Transaction Advisory</h3>
-                            <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm font-semibold">Expert</span>
-                        </div>
-                        <p class="text-gray-600">Tender documentation, government approvals, and stakeholder management</p>
-                    </div>
-                    
-                    <div class="timeline-item bg-white rounded-lg p-6 shadow-lg">
-                        <div class="flex items-center justify-between mb-4">
-                            <h3 class="text-xl font-bold text-gray-600">Tender & Award</h3>
-                            <span class="bg-gray-100 text-gray-600 px-3 py-1 rounded-full text-sm font-semibold">Supported</span>
-                        </div>
-                        <p class="text-gray-600">Bid evaluation support and contract finalization</p>
-                    </div>
-                    
-                    <div class="timeline-item bg-white rounded-lg p-6 shadow-lg">
-                        <div class="flex items-center justify-between mb-4">
-                            <h3 class="text-xl font-bold text-gray-600">Operations & Maintenance</h3>
-                            <span class="bg-gray-100 text-gray-600 px-3 py-1 rounded-full text-sm font-semibold">Advisory</span>
-                        </div>
-                        <p class="text-gray-600">Ongoing advisory and performance monitoring</p>
-                    </div>
-                </div>
-            </div>
+        <p>
+          Currently serving as an Infrastructure Consultant at the Asian Development Bank, I advise on landmark PPP transactions across the Philippines and the broader Southeast Asia region — from the award-winning NAIA PPP to ongoing concession advisory for flagship metro and commuter rail systems.
+        </p>
+        <p>
+          My work spans the full project lifecycle: from origination and feasibility, through transaction structuring and commercial close, to policy reform and institutional capacity building. I bring both government and multilateral perspectives, having served previously as Engineer III/IV at the Department of Transportation.
+        </p>
+
+        <div class="about-tags">
+          <span class="tag">Transport PPP</span>
+          <span class="tag">Financial Modeling</span>
+          <span class="tag">Railway Systems</span>
+          <span class="tag">Policy Advisory</span>
+          <span class="tag">Stakeholder Engagement</span>
+          <span class="tag">Concession Agreements</span>
+          <span class="tag">NEDA-ICC Process</span>
+          <span class="tag">Southeast Asia</span>
         </div>
-    </section>
+      </div>
+    </div>
+  </section>
 
-    <!-- Skills Chart -->
-    <section id="skills" class="section-padding bg-white">
-        <div class="container mx-auto px-6">
-            <div class="text-center mb-16">
-                <h2 class="text-4xl md:text-5xl font-bold text-gray-800 mb-6">Core Competencies</h2>
-                <div class="w-24 h-1 bg-blue-500 mx-auto mb-8"></div>
-            </div>
-            
-            <div class="max-w-4xl mx-auto">
-                <div class="bg-white rounded-2xl shadow-lg p-8">
-                    <div class="h-96">
-                        <canvas id="competencyChart"></canvas>
-                    </div>
-                </div>
-            </div>
+  <!-- ═══ EXPERTISE ═══ -->
+  <section id="expertise">
+    <div class="section-header fade-in">
+      <span class="section-number">02 /</span>
+      <div>
+        <span class="label" style="margin-bottom:0.8rem;display:block;">Core Competencies</span>
+        <h2>Where I <em class="italic gold">Excel</em></h2>
+      </div>
+    </div>
+
+    <div class="expertise-grid">
+      <div class="expertise-card fade-in">
+        <span class="expertise-icon">🏗️</span>
+        <h3>PPP & Infrastructure Development</h3>
+        <p>End-to-end transaction advisory for large-scale public-private partnerships. Expertise in concession agreement structuring, risk allocation frameworks, and investment approval processes for railways, airports, and BRT systems.</p>
+        <div class="expertise-skills">
+          <span class="skill-chip">Concession Agreements</span>
+          <span class="skill-chip">NEDA-ICC Approval</span>
+          <span class="skill-chip">Risk Analysis</span>
+          <span class="skill-chip">PPP Structuring</span>
         </div>
-    </section>
+      </div>
 
-    <!-- Case Studies -->
-    <section id="cases" class="section-padding bg-gray-100">
-        <div class="container mx-auto px-6">
-            <div class="text-center mb-16">
-                <h2 class="text-4xl md:text-5xl font-bold text-gray-800 mb-6">Key Achievements</h2>
-                <div class="w-24 h-1 bg-blue-500 mx-auto mb-8"></div>
-            </div>
-            
-            <!-- Metrics -->
-            <div class="grid md:grid-cols-3 gap-8 mb-16">
-                <div class="metric-card rounded-2xl p-8 text-center">
-                    <div class="text-4xl font-bold mb-2">₱170.6B</div>
-                    <div class="text-lg opacity-90">NAIA PPP Project Value</div>
-                </div>
-                <div class="metric-card rounded-2xl p-8 text-center">
-                    <div class="text-4xl font-bold mb-2">$8M+</div>
-                    <div class="text-lg opacity-90">Funding Secured</div>
-                </div>
-                <div class="metric-card rounded-2xl p-8 text-center">
-                    <div class="text-4xl font-bold mb-2">5+</div>
-                    <div class="text-lg opacity-90">Years Experience</div>
-                </div>
-            </div>
-            
-            <!-- Case Study Cards -->
-            <div class="grid md:grid-cols-2 gap-8">
-                <div class="bg-white rounded-2xl p-8 shadow-lg">
-                    <div class="bg-blue-100 text-blue-800 px-4 py-2 rounded-full text-sm font-semibold mb-6 inline-block">
-                        Transport Deal of the Year 2024
-                    </div>
-                    <h3 class="text-2xl font-bold text-gray-800 mb-4">NAIA PPP Project</h3>
-                    <p class="text-gray-600 mb-6">
-                        Led government-side advisory for the ₱170.6B NAIA privatization, one of the largest and most complex PPP transactions in Philippine history.
-                    </p>
-                    <ul class="space-y-2 text-gray-600">
-                        <li class="flex items-start">
-                            <span class="text-blue-500 mr-2">•</span>
-                            Project structuring and NEDA-ICC approval package preparation
-                        </li>
-                        <li class="flex items-start">
-                            <span class="text-blue-500 mr-2">•</span>
-                            Commercial viability assessments and financial modeling
-                        </li>
-                        <li class="flex items-start">
-                            <span class="text-blue-500 mr-2">•</span>
-                            Multi-stakeholder engagement coordination
-                        </li>
-                    </ul>
-                </div>
-                
-                <div class="bg-white rounded-2xl p-8 shadow-lg">
-                    <div class="bg-green-100 text-green-800 px-4 py-2 rounded-full text-sm font-semibold mb-6 inline-block">
-                        Strategic Funding Success
-                    </div>
-                    <h3 class="text-2xl font-bold text-gray-800 mb-4">$8M+ Funding Secured</h3>
-                    <p class="text-gray-600 mb-6">
-                        Transformed unfunded national transport priorities into funded projects through strategic multilateral engagement.
-                    </p>
-                    <ul class="space-y-2 text-gray-600">
-                        <li class="flex items-start">
-                            <span class="text-green-500 mr-2">•</span>
-                            Comprehensive project concept note development
-                        </li>
-                        <li class="flex items-start">
-                            <span class="text-green-500 mr-2">•</span>
-                            PPP suitability analysis for four priority projects
-                        </li>
-                        <li class="flex items-start">
-                            <span class="text-green-500 mr-2">•</span>
-                            Direct engagement with ADB and AIIB partners
-                        </li>
-                    </ul>
-                </div>
-            </div>
+      <div class="expertise-card fade-in">
+        <span class="expertise-icon">📊</span>
+        <h3>Economic & Financial Analysis</h3>
+        <p>Sophisticated financial modeling, commercial viability assessments, and economic impact studies for infrastructure investment decisions. Experienced in multi-criteria analysis for project prioritization and funding mobilization.</p>
+        <div class="expertise-skills">
+          <span class="skill-chip">Financial Modeling</span>
+          <span class="skill-chip">Feasibility Studies</span>
+          <span class="skill-chip">Economic Analysis</span>
+          <span class="skill-chip">Commercial Viability</span>
         </div>
-    </section>
+      </div>
 
-    <!-- Vision -->
-    <section id="vision" class="section-padding bg-white">
-        <div class="container mx-auto px-6">
-            <div class="text-center mb-16">
-                <h2 class="text-4xl md:text-5xl font-bold text-gray-800 mb-6">Future Vision</h2>
-                <div class="w-24 h-1 bg-blue-500 mx-auto mb-8"></div>
-            </div>
-            
-            <div class="max-w-4xl mx-auto">
-                <div class="bg-gray-50 rounded-2xl p-8 mb-12">
-                    <h3 class="text-2xl font-bold text-gray-800 mb-6 text-center">Research Focus Areas</h3>
-                    <div class="grid md:grid-cols-2 gap-8">
-                        <div class="space-y-4">
-                            <div class="flex items-start">
-                                <div class="w-3 h-3 bg-blue-500 rounded-full mt-2 mr-4 flex-shrink-0"></div>
-                                <div>
-                                    <h4 class="font-semibold text-gray-800">Climate-Resilient Infrastructure</h4>
-                                    <p class="text-gray-600 text-sm">Advancing rail, BRT, and EV infrastructure with focus on carbon reduction and extreme weather resilience</p>
-                                </div>
-                            </div>
-                            <div class="flex items-start">
-                                <div class="w-3 h-3 bg-green-500 rounded-full mt-2 mr-4 flex-shrink-0"></div>
-                                <div>
-                                    <h4 class="font-semibold text-gray-800">Inclusive Transit Systems</h4>
-                                    <p class="text-gray-600 text-sm">Designing equitable multi-modal networks and affordable PPP structures for underserved communities</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="space-y-4">
-                            <div class="flex items-start">
-                                <div class="w-3 h-3 bg-purple-500 rounded-full mt-2 mr-4 flex-shrink-0"></div>
-                                <div>
-                                    <h4 class="font-semibold text-gray-800">Digital Integration</h4>
-                                    <p class="text-gray-600 text-sm">Smart mobility solutions with automated fare collection, real-time data, and AI-driven efficiencies</p>
-                                </div>
-                            </div>
-                            <div class="flex items-start">
-                                <div class="w-3 h-3 bg-orange-500 rounded-full mt-2 mr-4 flex-shrink-0"></div>
-                                <div>
-                                    <h4 class="font-semibold text-gray-800">Innovative Financing</h4>
-                                    <p class="text-gray-600 text-sm">Pioneering blended finance models, green bonds, and outcome-based contracts</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="text-center">
-                    <blockquote class="text-xl italic text-gray-600 mb-8">
-                        "My goal is to create sustainable infrastructure solutions that address Southeast Asia's urgent mobility challenges while ensuring commercial viability and environmental responsibility."
-                    </blockquote>
-                </div>
-            </div>
+      <div class="expertise-card fade-in">
+        <span class="expertise-icon">🚆</span>
+        <h3>Transport Planning & Engineering</h3>
+        <p>Deep technical expertise in transportation systems engineering, from traffic analysis and demand modeling to master plan development. Graduate specialization in transportation engineering with research at UC Berkeley ITS.</p>
+        <div class="expertise-skills">
+          <span class="skill-chip">Railway Systems</span>
+          <span class="skill-chip">BRT Planning</span>
+          <span class="skill-chip">Traffic Analysis</span>
+          <span class="skill-chip">Master Plans</span>
         </div>
-    </section>
+      </div>
 
-    <!-- Contact -->
-    <section id="contact" class="section-padding hero-gradient">
-        <div class="container mx-auto px-6 text-center">
-            <h2 class="text-4xl md:text-5xl font-bold text-white mb-8">Let's Connect</h2>
-            <p class="text-xl text-white/90 mb-12 max-w-2xl mx-auto">
-                Ready to discuss how I can contribute to your infrastructure projects and organizational goals.
-            </p>
-            
-            <div class="flex flex-col md:flex-row items-center justify-center gap-8 mb-12">
-                <div class="glass-card px-8 py-6 rounded-2xl">
-                    <div class="text-white font-semibold">Email</div>
-                    <div class="text-white/80">keithdiaz0611@gmail.com</div>
-                </div>
-                <div class="glass-card px-8 py-6 rounded-2xl">
-                    <div class="text-white font-semibold">Phone</div>
-                    <div class="text-white/80">+63 995 789 6288</div>
-                </div>
-                <div class="glass-card px-8 py-6 rounded-2xl">
-                    <div class="text-white font-semibold">Location</div>
-                    <div class="text-white/80">Rodriguez, Rizal, Philippines</div>
-                </div>
-            </div>
-            
-            <div class="text-center">
-                <p class="text-white/80 text-lg">
-                    Open to opportunities in infrastructure finance, PPP advisory, and policy development
-                </p>
-            </div>
+      <div class="expertise-card fade-in">
+        <span class="expertise-icon">🌏</span>
+        <h3>Multilateral Stakeholder Engagement</h3>
+        <p>Proven track record coordinating with ADB, JICA, USAID, AIIB, and government agencies. Skilled in navigating complex multi-stakeholder environments across 18-month+ transaction processes in Southeast Asia.</p>
+        <div class="expertise-skills">
+          <span class="skill-chip">ADB / JICA / USAID</span>
+          <span class="skill-chip">DOTr / NEDA</span>
+          <span class="skill-chip">Transaction Advisory</span>
+          <span class="skill-chip">Bilateral Coordination</span>
         </div>
-    </section>
+      </div>
 
-    <script>
-        // Scroll Progress
-        window.addEventListener('scroll', () => {
-            const scrolled = (window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100;
-            document.getElementById('scrollProgress').style.width = scrolled + '%';
-        });
+      <div class="expertise-card fade-in">
+        <span class="expertise-icon">📋</span>
+        <h3>Policy Development & Reform</h3>
+        <p>Strategic framework development for rail sector reform, institutional capacity building, and standardization of project preparation guidelines across government agencies in alignment with national transport plans.</p>
+        <div class="expertise-skills">
+          <span class="skill-chip">Sector Reform Strategy</span>
+          <span class="skill-chip">Institutional Frameworks</span>
+          <span class="skill-chip">Regulatory Analysis</span>
+          <span class="skill-chip">Capacity Building</span>
+        </div>
+      </div>
 
-        // Navigation Dots
-        const navDots = document.querySelectorAll('.nav-dot');
-        const sections = document.querySelectorAll('section');
+      <div class="expertise-card fade-in">
+        <span class="expertise-icon">🔬</span>
+        <h3>Research & Data Analytics</h3>
+        <p>Advanced data visualization, statistical analysis, and evidence-based research. Visiting Researcher at UC Berkeley; experienced in translating complex analyses into compelling narratives for decision-makers.</p>
+        <div class="expertise-skills">
+          <span class="skill-chip">Data Visualization</span>
+          <span class="skill-chip">GIS Analysis</span>
+          <span class="skill-chip">Tableau / StoryIQ</span>
+          <span class="skill-chip">Academic Research</span>
+        </div>
+      </div>
+    </div>
+  </section>
 
-        navDots.forEach(dot => {
-            dot.addEventListener('click', () => {
-                const targetSection = document.getElementById(dot.dataset.section);
-                targetSection.scrollIntoView({behavior: 'smooth'});
-            });
-        });
+  <!-- ═══ PROJECTS ═══ -->
+  <section id="projects">
+    <div class="section-header fade-in">
+      <span class="section-number">03 /</span>
+      <div>
+        <span class="label" style="margin-bottom:0.8rem;display:block;">Key Engagements</span>
+        <h2>Landmark <em class="italic gold">Projects</em></h2>
+      </div>
+    </div>
+    <p class="projects-intro fade-in">Selected transactions and advisory engagements representing the depth and breadth of infrastructure impact across the Philippines and Southeast Asia.</p>
 
-        // Update active nav dot on scroll
-        window.addEventListener('scroll', () => {
-            let current = '';
-            sections.forEach(section => {
-                const sectionTop = section.offsetTop;
-                const sectionHeight = section.clientHeight;
-                if (scrollY >= (sectionTop - sectionHeight / 3)) {
-                    current = section.getAttribute('id');
-                }
-            });
+    <div class="projects-grid">
 
-            navDots.forEach(dot => {
-                dot.classList.remove('active');
-                if (dot.dataset.section === current) {
-                    dot.classList.add('active');
-                }
-            });
-        });
+      <!-- FEATURED PROJECT -->
+      <div class="project-card featured fade-in">
+        <!-- ✏️ TEMPLATE: Replace with NAIA project photo (aerial, terminal, or ground-breaking event) -->
+        <div class="project-image" style="min-height:300px;">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M21 16v-2l-8-5V3.5c0-.83-.67-1.5-1.5-1.5S10 2.67 10 3.5V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5l8 2.5z"/></svg>
+          <span class="placeholder-label">[ NAIA Project Photo / Aerial ]</span>
+          <span class="award-badge">🏆 Transport Deal of the Year 2024</span>
+        </div>
+        <div class="project-body">
+          <div class="project-meta">
+            <span class="project-category">Airport PPP · Transaction Advisory</span>
+            <span class="project-year">2024</span>
+          </div>
+          <h3>Ninoy Aquino International Airport (NAIA) PPP</h3>
+          <p>Led government-side support for the landmark NAIA PPP transaction — one of the most complex infrastructure deals in Philippine history. Managed 18-month multi-stakeholder engagement, NEDA-ICC approval packages, commercial viability assessment, and risk analysis through commercial close. Recognized as <em>Transport Deal of the Year</em> by Project Finance International.</p>
+          <div class="project-tags">
+            <span class="skill-chip">PPP Structuring</span>
+            <span class="skill-chip">Commercial Close</span>
+            <span class="skill-chip">NEDA-ICC</span>
+            <span class="skill-chip">Financial Modeling</span>
+            <span class="skill-chip">ADB</span>
+          </div>
+        </div>
+      </div>
 
-        // Competency Chart
-        function renderCompetencyChart() {
-            const ctx = document.getElementById('competencyChart').getContext('2d');
-            new Chart(ctx, {
-                type: 'radar',
-                data: {
-                    labels: [
-                        'Financial Modeling',
-                        'PPP Structuring',
-                        'Policy Analysis',
-                        'Risk Mitigation',
-                        'Stakeholder Management',
-                        'Transaction Advisory'
-                    ],
-                    datasets: [{
-                        label: 'Expertise Level',
-                        data: [9, 9, 8, 8, 9, 10],
-                        backgroundColor: 'rgba(59, 130, 246, 0.1)',
-                        borderColor: 'rgba(59, 130, 246, 1)',
-                        borderWidth: 3,
-                        pointBackgroundColor: 'rgba(59, 130, 246, 1)',
-                        pointBorderColor: '#fff',
-                        pointBorderWidth: 2,
-                        pointRadius: 6,
-                        pointHoverRadius: 8
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    plugins: {
-                        legend: {
-                            display: false
-                        }
-                    },
-                    scales: {
-                        r: {
-                            beginAtZero: true,
-                            max: 10,
-                            ticks: {
-                                stepSize: 2,
-                                color: '#6b7280',
-                                backdropColor: 'rgba(255, 255, 255, 0.8)'
-                            },
-                            grid: {
-                                color: 'rgba(0, 0, 0, 0.1)'
-                            },
-                            pointLabels: {
-                                font: {
-                                    size: 14,
-                                    weight: '600'
-                                },
-                                color: '#374151'
-                            }
-                        }
-                    }
-                }
-            });
+      <!-- PROJECT 2 -->
+      <div class="project-card fade-in">
+        <!-- ✏️ TEMPLATE: Replace with NSCR/MRT photo or map -->
+        <div class="project-image">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2c-4 0-8 .5-8 4v9.5C4 17.43 5.57 19 7.5 19L6 20.5v.5h2.23l2-2H14l2 2H18v-.5L16.5 19c1.93 0 3.5-1.57 3.5-3.5V6c0-3.5-4-4-8-4zM7.5 17c-.83 0-1.5-.67-1.5-1.5S6.67 14 7.5 14s1.5.67 1.5 1.5S8.33 17 7.5 17zm3.5-6H6V6h5v5zm2 0V6h5v5h-5zm3 6c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5z"/></svg>
+          <span class="placeholder-label">[ Railway Project Photo ]</span>
+        </div>
+        <div class="project-body">
+          <div class="project-meta">
+            <span class="project-category">Railway · O&M Concession</span>
+            <span class="project-year">Ongoing</span>
+          </div>
+          <h3>North-South Commuter Railway (NSCR) O&M PPP</h3>
+          <p>Transaction advisory for the O&M concession of the North-South Commuter Railway — the Philippines' most ambitious rail infrastructure program connecting Metro Manila with key regional centers.</p>
+          <div class="project-tags">
+            <span class="skill-chip">Railway O&M</span>
+            <span class="skill-chip">Concession</span>
+            <span class="skill-chip">ADB OMDP</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- PROJECT 3 -->
+      <div class="project-card fade-in">
+        <!-- ✏️ TEMPLATE: Replace with Metro Manila Subway or MRT photo -->
+        <div class="project-image">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2c-4 0-8 .5-8 4v9.5C4 17.43 5.57 19 7.5 19L6 20.5v.5h2.23l2-2H14l2 2H18v-.5L16.5 19c1.93 0 3.5-1.57 3.5-3.5V6c0-3.5-4-4-8-4zM7.5 17c-.83 0-1.5-.67-1.5-1.5S6.67 14 7.5 14s1.5.67 1.5 1.5S8.33 17 7.5 17zm3.5-6H6V6h5v5zm2 0V6h5v5h-5zm3 6c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5z"/></svg>
+          <span class="placeholder-label">[ Subway / MRT-3 Photo ]</span>
+        </div>
+        <div class="project-body">
+          <div class="project-meta">
+            <span class="project-category">Metro Rail · Advisory</span>
+            <span class="project-year">Ongoing</span>
+          </div>
+          <h3>Metro Manila Subway & MRT-3 O&M PPP</h3>
+          <p>Parallel advisory roles on two flagship metro systems — the under-construction Metro Manila Subway and the operational MRT-3 — developing O&M concession frameworks for improved service delivery.</p>
+          <div class="project-tags">
+            <span class="skill-chip">Metro Rail</span>
+            <span class="skill-chip">O&M PPP</span>
+            <span class="skill-chip">Urban Transit</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- PROJECT 4 -->
+      <div class="project-card fade-in">
+        <!-- ✏️ TEMPLATE: Replace with BRT/feasibility project photo -->
+        <div class="project-image">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M4 16c0 .88.39 1.67 1 2.22V20c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-1h8v1c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-1.78c.61-.55 1-1.34 1-2.22V6c0-3.5-3.58-4-8-4s-8 .5-8 4v10zm5.5 1c-.83 0-1.5-.67-1.5-1.5S8.67 14 9.5 14s1.5.67 1.5 1.5S10.33 17 9.5 17zm5 0c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zM6 10V6h12v4H6z"/></svg>
+          <span class="placeholder-label">[ BRT / EDSA Busway Photo ]</span>
+        </div>
+        <div class="project-body">
+          <div class="project-meta">
+            <span class="project-category">Multi-Modal Feasibility</span>
+            <span class="project-year">2024</span>
+          </div>
+          <h3>Comprehensive Feasibility Study Portfolio</h3>
+          <p>Delivered economic and financial feasibility studies for five priority projects: San Mateo Railway, Mindanao Rail Phase 3, NCR EDSA Busway, North Long Haul, and Philippine AFCS nationwide fare system.</p>
+          <div class="project-tags">
+            <span class="skill-chip">Feasibility Studies</span>
+            <span class="skill-chip">Economic Analysis</span>
+            <span class="skill-chip">Multi-Modal</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- PROJECT 5 – Full width -->
+      <div class="project-card featured fade-in" style="grid-template-columns:1.4fr 1fr;">
+        <div class="project-body" style="display:flex;flex-direction:column;justify-content:center;padding:3rem;">
+          <div class="project-meta">
+            <span class="project-category">Policy & Reform · National Framework</span>
+            <span class="project-year">2023</span>
+          </div>
+          <h3>Philippines Rail Sector Development Roadmap</h3>
+          <p>Co-developed the national railway sector reform strategy in partnership with Partnerships for Infrastructure (P4I) Australia — synthesizing international best practices with the Philippine regulatory context and producing the institutional capacity building recommendations now being implemented across government agencies.</p>
+          <div class="project-tags">
+            <span class="skill-chip">Sector Reform</span>
+            <span class="skill-chip">Policy Framework</span>
+            <span class="skill-chip">P4I Australia</span>
+            <span class="skill-chip">Capacity Building</span>
+          </div>
+        </div>
+        <!-- ✏️ TEMPLATE: Replace with policy document cover or workshop photo -->
+        <div class="project-image" style="min-height:280px;border-right:none;border-left:1px solid var(--border);">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/></svg>
+          <span class="placeholder-label">[ Report Cover / Workshop Photo ]</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ═══ EXPERIENCE ═══ -->
+  <section id="experience">
+    <div class="section-header fade-in">
+      <span class="section-number">04 /</span>
+      <div>
+        <span class="label" style="margin-bottom:0.8rem;display:block;">Career Path</span>
+        <h2>Professional <em class="italic gold">Journey</em></h2>
+      </div>
+    </div>
+
+    <div class="timeline">
+
+      <div class="timeline-item current">
+        <div class="timeline-dot"></div>
+        <span class="timeline-date">May 2024 — Present</span>
+        <div class="timeline-org">Asian Development Bank · Manila, Philippines</div>
+        <h3>Infrastructure Consultant</h3>
+        <p>Advisory for landmark PPP transactions in railway and aviation infrastructure across the Philippines and Southeast Asia.</p>
+        <ul class="timeline-achievements">
+          <li>Led government-side transaction support for award-winning NAIA PPP (Transport Deal of the Year 2024)</li>
+          <li>Active advisory on NSCR, MMS, MRT-3, and AFCS O&M concessions</li>
+          <li>Financial modeling and commercial viability assessments for major infrastructure investments</li>
+          <li>Stakeholder coordination with DOTr, NEDA, and international partners</li>
+        </ul>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <span class="timeline-date">September 2021 — May 2024</span>
+        <div class="timeline-org">Department of Transportation · Manila, Philippines</div>
+        <h3>Engineer III/IV (Contract of Service)</h3>
+        <p>Delivered priority outputs in transport infrastructure development across railway, BRT, and multi-modal sectors.</p>
+        <ul class="timeline-achievements">
+          <li>Secured over USD 8M in transaction advisory and project preparation funding from multilateral partners</li>
+          <li>Coordinated with ADB, JICA, USAID on project preparation and technical assistance</li>
+          <li>Oversaw P4I Australia technical assistance programs on railway sector reform</li>
+          <li>Led origination of four priority transport projects aligned with national development priorities</li>
+        </ul>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <span class="timeline-date">April 2018 — November 2021</span>
+        <div class="timeline-org">CHA Construction and Supply · Philippines</div>
+        <h3>Project Manager</h3>
+        <p>Managed multidisciplinary project teams through full development lifecycle, maintaining quality standards and budget requirements across concurrent infrastructure engagements.</p>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <span class="timeline-date">April 2019 — September 2020</span>
+        <div class="timeline-org">Mapua University · Manila, Philippines</div>
+        <h3>University Instructor & Research Fellow</h3>
+        <p>Lectured in transportation engineering and infrastructure planning while conducting research in sustainable transport systems and smart mobility. Visiting Researcher at UC Berkeley ITS (Oct 2019 – Apr 2020).</p>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <span class="timeline-date">January 2021 — August 2021</span>
+        <div class="timeline-org">Manila Water Company · Manila, Philippines</div>
+        <h3>Traffic Engineer</h3>
+        <p>Conducted comprehensive traffic analyses and developed traffic impact assessments for major infrastructure project planning.</p>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <span class="timeline-date">June 2017 — March 2018</span>
+        <div class="timeline-org">EEI Corporation · Philippines</div>
+        <h3>Design and Cost Engineer</h3>
+        <p>Supported design development and cost estimation for infrastructure projects. Conducted technical reviews and quality assurance for engineering deliverables.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ═══ CERTIFICATIONS ═══ -->
+  <section id="certifications">
+    <div class="section-header fade-in">
+      <span class="section-number">05 /</span>
+      <div>
+        <span class="label" style="margin-bottom:0.8rem;display:block;">Training & Credentials</span>
+        <h2>Continuous <em class="italic gold">Learning</em></h2>
+      </div>
+    </div>
+
+    <div class="certs-grid">
+      <div class="cert-card fade-in">
+        <span class="cert-year">Dec 2023</span>
+        <h4>Concession Agreements & Negotiation</h4>
+        <p>U.S. Department of Commerce · Commercial Law Development Program</p>
+      </div>
+      <div class="cert-card fade-in">
+        <span class="cert-year">Jul 2023</span>
+        <h4>Frontiers in High-Speed Rail Development in Asia</h4>
+        <p>ADB Institute · ADBI</p>
+      </div>
+      <div class="cert-card fade-in">
+        <span class="cert-year">Jun 2023</span>
+        <h4>FIDIC Contracts & Disputes</h4>
+        <p>U.S. Department of Commerce · Commercial Law Development Program</p>
+      </div>
+      <div class="cert-card fade-in">
+        <span class="cert-year">Jul 2022</span>
+        <h4>PPP Contracts for Project Managers</h4>
+        <p>Asian Development Bank · IDOM Philippines</p>
+      </div>
+      <div class="cert-card fade-in">
+        <span class="cert-year">Nov 2021</span>
+        <h4>Public Policy for Infrastructure</h4>
+        <p>ADB Institute · Stanford University</p>
+      </div>
+      <div class="cert-card fade-in">
+        <span class="cert-year">Jul 2021</span>
+        <h4>Professional Certificate in Data Analytics</h4>
+        <p>Google</p>
+      </div>
+      <div class="cert-card fade-in">
+        <span class="cert-year">Nov 2018</span>
+        <h4>Railway Sector Capability Development</h4>
+        <p>Department of Transportation · ADB · PFM-I Australia</p>
+      </div>
+      <div class="cert-card fade-in">
+        <span class="cert-year">Nov 2018</span>
+        <h4>Advanced Visualization & Dashboard Design</h4>
+        <p>StoryIQ · Dataseer</p>
+      </div>
+    </div>
+
+    <div style="margin-top:3rem;" class="fade-in">
+      <span class="label" style="margin-bottom:1.5rem;display:block;">Education</span>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;">
+        <div class="cert-card">
+          <span class="cert-year">2018 – 2021</span>
+          <h4>M.Sc. Civil Engineering — Transportation Engineering</h4>
+          <p>Mapua University, Manila · PCARI Scholar · Visiting Researcher, UC Berkeley ITS</p>
+        </div>
+        <div class="cert-card">
+          <span class="cert-year">2012 – 2017</span>
+          <h4>B.Sc. Civil Engineering</h4>
+          <p>Mapua University, Manila, Philippines</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ CONTACT ═══ -->
+  <section id="contact">
+    <div class="contact-inner">
+      <span class="label">Open to Opportunities</span>
+      <h2>Let's Build<br /><em class="italic gold">Something Significant</em></h2>
+      <p class="contact-sub">
+        Available for leadership roles in transport infrastructure, strategic consultancy engagements, and advisory partnerships across Southeast Asia and beyond.
+      </p>
+
+      <div class="contact-channels">
+        <!-- ✏️ TEMPLATE: Update these with your actual links and handles -->
+        <a href="mailto:keithdiaz0611@gmail.com" class="contact-channel">
+          <div>
+            <span class="ch-label">Email</span>
+            <span class="ch-value">keithdiaz0611@gmail.com</span>
+          </div>
+        </a>
+        <a href="tel:+639957896288" class="contact-channel">
+          <div>
+            <span class="ch-label">Phone / WhatsApp</span>
+            <span class="ch-value">+63 995 789 6288</span>
+          </div>
+        </a>
+        <!-- ✏️ TEMPLATE: Add your actual LinkedIn URL -->
+        <a href="https://linkedin.com/in/[your-linkedin-handle]" target="_blank" class="contact-channel">
+          <div>
+            <span class="ch-label">LinkedIn</span>
+            <span class="ch-value">linkedin.com/in/[your-handle]</span>
+          </div>
+        </a>
+        <!-- ✏️ TEMPLATE: Add your location or base of operations -->
+        <a href="#" class="contact-channel">
+          <div>
+            <span class="ch-label">Based in</span>
+            <span class="ch-value">Rodriguez, Rizal · Philippines</span>
+          </div>
+        </a>
+      </div>
+
+      <div class="contact-actions">
+        <a href="mailto:keithdiaz0611@gmail.com" class="btn-primary">Send a Message</a>
+        <!-- ✏️ TEMPLATE: Link to your resume PDF -->
+        <a href="#" class="btn-secondary" download>Download CV</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ FOOTER ═══ -->
+  <footer>
+    <p>© 2025 Keith Anshilo L. Diaz · Infrastructure Consultant</p>
+    <div class="footer-links">
+      <a href="#about">About</a>
+      <a href="#projects">Projects</a>
+      <a href="#experience">Experience</a>
+      <a href="#contact">Contact</a>
+      <!-- ✏️ TEMPLATE: Add your LinkedIn and other social links below -->
+      <a href="https://linkedin.com/in/[your-handle]" target="_blank">LinkedIn</a>
+    </div>
+  </footer>
+
+  <!-- ═══ JAVASCRIPT ═══ -->
+  <script>
+    // Sticky nav
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      navbar.classList.toggle('scrolled', window.scrollY > 60);
+    });
+
+    // Intersection Observer for fade-in elements
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
         }
+      });
+    }, { threshold: 0.12 });
 
-        // Initialize chart when page loads
-        document.addEventListener('DOMContentLoaded', renderCompetencyChart);
-    </script>
+    document.querySelectorAll('.fade-in, .timeline-item').forEach(el => observer.observe(el));
+
+    // Staggered expertise card delays
+    document.querySelectorAll('.expertise-card').forEach((card, i) => {
+      card.style.transitionDelay = `${i * 0.08}s`;
+    });
+    document.querySelectorAll('.cert-card').forEach((card, i) => {
+      card.style.transitionDelay = `${i * 0.05}s`;
+    });
+    document.querySelectorAll('.timeline-item').forEach((item, i) => {
+      item.style.transitionDelay = `${i * 0.1}s`;
+    });
+
+    // Smooth scroll for nav links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          e.preventDefault();
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    });
+  </script>
+
 </body>
 </html>
